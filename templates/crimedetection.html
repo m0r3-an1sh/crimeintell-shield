@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}CrimeDetect{% endblock title %}
+{% block navcrimeactive %}active{% endblock navcrimeactive %}
+{% load static %}
+{% block body %}
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url({% static '/img/25.jpg' %});">
+        <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+  
+          <h2>Crime Detect</h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Crime Detect</li>
+          </ol>
+  
+        </div>
+  </div><!-- End Breadcrumbs -->
+
+<div class="container p-5">
+    <div class="row">
+        
+            <div class="col-12 section-header p-5 pb-0"> 
+                <h2>Crime Detector</h2>
+                <p>See the criminals that are in your areas</p>
+            </div>
+
+        <div class="col-12 d-flex justify-content-center p-5">
+            <img src="{% url 'videofeed' %}" class="w-100 h-100 shadow shadow-lg border border-5 border-warning">
+        </div>
+    </div>
+</div>
+{% endblock body %}

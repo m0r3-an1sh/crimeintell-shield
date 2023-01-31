@@ -1,0 +1,289 @@
+{% extends 'base.html' %}
+{% block navcrimesearch %}active{% endblock navcrimesearch %}
+{% block title %}search{% endblock title %}
+{% block body %}
+{% load static %}
+
+    <!-- ======= Breadcrumbs ======= -->
+<div class="breadcrumbs d-flex align-items-center" style="background-image: url({% static '/img/26.jpg' %});">
+      <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+        <h2>Crime News</h2>
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li>CrimeNews</li>
+        </ol>
+
+      </div>
+</div><!-- End Breadcrumbs -->
+
+
+<div class="container pt-5" >
+      
+  <form action="/crime_search" method="post">
+  {% csrf_token %}
+  <div class="row">
+    <div class="col-5">
+      <select name = 'location' class="form-select form-select-lg">
+        <option value="" disabled selected>Choose Location:</option>
+        <option value="Mumbai">Mumbai</option>
+        <option value="Pune">Pune</option>
+        <option value="Nashik">Nashik</option>
+        <option value="AndhraPradesh">Andhra Pradesh</option>
+        <option value="ArunachalPradesh">Arunachal Pradesh</option>
+        <option value="Assam">Assam</option>
+        <option value="Bihar">Bihar</option>
+        <option value="Chhattishgarh">Chhattishgarh</option>
+        <option value="Goa">Goa</option>
+        <option value="Gujarat">Gujarat</option>
+        <option value="Haryana">Haryana</option>
+        <option value="HimachalPradesh">Himachal Pradesh</option>
+        <option value="JammuandKashmir">Jammu and Kashmir</option>
+        <option value="Jharkhand">Jharkhand</option>
+        <option value="Karnataka">Karnataka</option>
+        <option value="Kerala">Kerala</option>
+        <option value="MadhyaPradesh">Madhya Pradesh</option>
+        <option value="Maharashtra">Maharashtra</option>
+        <option value="Manipur">Manipur</option>
+        <option value="Meghalaya">Meghalaya</option>
+        <option value="Mizoram">Mizoram</option>
+        <option value="Nagaland">Nagaland</option>
+        <option value="Odisha">Odisha</option>
+        <option value="Punjab">Punjab</option>
+        <option value="Rajasthan">Rajasthan</option>
+        <option value="Sikkim">Sikkim</option>
+        <option value="Tamilnadu">Tamilnadu</option>
+        <option value="Telengana">Telengana</option>
+        <option value="Tripura">Tripura</option>
+        <option value="UttarPradesh">Uttar Pradesh</option>
+        <option value="Uttarakhand">Uttarakhand</option>
+        <option value="WestBengal">West Bengal</option>
+        <option value="AndamanNicobar">Andaman Nicobar</option>
+        <option value="Chandigarh">Chandigarh</option>
+        <option value="DamanandDiuandDadraandNagarHaveli">Daman and Diu and Dadra and Nagar Haveli</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Lakshadweep">Lakshadweep</option>
+        <option value="Puducherry">Puducherry</option>
+        <option value="Ladakh">Ladakh</option>
+      </select>
+    </div>
+    <div class="col-5">
+      <select name = 'crime' class="form-select form-select-lg">
+        <option value="" disabled selected>Choose Crime:</option>
+        <option value="Theft">theft</option>
+        <option value="Rape">Rape</option>
+        <option value="Kidnapping">Kidnapping</option>
+        <option value="Dacoity">Dacoity</option>
+        <option value="Burglary">Burglary</option>
+        <option value="Riots">Riots</option>
+        <option value="Cheating">Cheating</option>
+        <option value="Molestation">Molestation</option>
+        <option value="Sexual Harrasment">Sexual Harrasment</option>
+      </select>
+    </div>
+    <div class="col-2">
+      <button type="submit" class="btn btn-dark btn-lg">Search</button>
+    </div>
+  </form>
+  </div>
+</div>
+
+    <!-- ======= News Constructions Section ======= -->
+<section id="constructions" class="constructions">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>News Space</h2>
+          <p>Select the feilds above to get updates about the crimes happening in your location</p>
+        </div>
+
+        <div class="row gy-4">
+         
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <a style="text-decoration: none;" href="{{c.link.0}}">
+            <div class="card-item">
+              <div class="row">
+                <div class="col-xl-5">
+                  <div class="card-bg" style="background-image: url({{c.img.0}});"></div>
+                </div>
+                <div class="col-xl-7 d-flex align-items-center">
+                  <div class="card-body">
+                    <h4 class="card-title">{{c.title.0}}</h4>
+                    <p>{{c.desc.0}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </a>
+          </div><!-- End Card Item -->
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <a style="text-decoration: none;" href="{{c.link.1}}">
+            <div class="card-item">
+              <div class="row">
+                <div class="col-xl-5">
+                  <div class="card-bg" style="background-image: url({{c.img.1}});"></div>
+                </div>
+                <div class="col-xl-7 d-flex align-items-center">
+                  <div class="card-body">
+                    <h4 class="card-title">{{c.title.1}}</h4>
+                    <p>{{c.desc.1}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </a>
+          </div><!-- End Card Item -->
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <a style="text-decoration: none;" href="{{c.link.2}}">
+            <div class="card-item">
+              <div class="row">
+                <div class="col-xl-5">
+                  <div class="card-bg" style="background-image: url({{c.img.2}});"></div>
+                </div>
+                <div class="col-xl-7 d-flex align-items-center">
+                  <div class="card-body">
+                    <h4 class="card-title">{{c.title.2}}</h4>
+                    <p>{{c.desc.2}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </a>
+          </div><!-- End Card Item -->
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <a style="text-decoration: none;" href="{{c.link.3}}">
+            <div class="card-item">
+              <div class="row">
+                <div class="col-xl-5">
+                  <div class="card-bg" style="background-image: url({{c.img.3}});"></div>
+                </div>
+                <div class="col-xl-7 d-flex align-items-center">
+                  <div class="card-body">
+                    <h4 class="card-title">{{c.title.3}}</h4>
+                    <p>{{c.desc.3}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </a>
+          </div><!-- End Card Item -->
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <a style="text-decoration: none;" href="{{c.link.4}}">
+            <div class="card-item">
+              <div class="row">
+                <div class="col-xl-5">
+                  <div class="card-bg" style="background-image: url({{c.img.4}});"></div>
+                </div>
+                <div class="col-xl-7 d-flex align-items-center">
+                  <div class="card-body">
+                    <h4 class="card-title">{{c.title.4}}</h4>
+                    <p>{{c.desc.4}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </a>
+          </div><!-- End Card Item -->
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <a style="text-decoration: none;" href="{{c.link.5}}">
+            <div class="card-item">
+              <div class="row">
+                <div class="col-xl-5">
+                  <div class="card-bg" style="background-image: url({{c.img.5}});"></div>
+                </div>
+                <div class="col-xl-7 d-flex align-items-center">
+                  <div class="card-body">
+                    <h4 class="card-title">{{c.title.5}}</h4>
+                    <p>{{c.desc.5}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </a>
+          </div><!-- End Card Item -->
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <a style="text-decoration: none;" href="{{c.link.6}}">
+            <div class="card-item">
+              <div class="row">
+                <div class="col-xl-5">
+                  <div class="card-bg" style="background-image: url({{c.img.6}});"></div>
+                </div>
+                <div class="col-xl-7 d-flex align-items-center">
+                  <div class="card-body">
+                    <h4 class="card-title">{{c.title.6}}</h4>
+                    <p>{{c.desc.6}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </a>
+          </div><!-- End Card Item -->
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <a style="text-decoration: none;" href="{{c.link.7}}">
+            <div class="card-item">
+              <div class="row">
+                <div class="col-xl-5">
+                  <div class="card-bg" style="background-image: url({{c.img.7}});"></div>
+                </div>
+                <div class="col-xl-7 d-flex align-items-center">
+                  <div class="card-body">
+                    <h4 class="card-title">{{c.title.7}}</h4>
+                    <p>{{c.desc.7}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </a>
+          </div><!-- End Card Item -->
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <a style="text-decoration: none;" href="{{c.link.8}}">
+            <div class="card-item">
+              <div class="row">
+                <div class="col-xl-5">
+                  <div class="card-bg" style="background-image: url({{c.img.8}});"></div>
+                </div>
+                <div class="col-xl-7 d-flex align-items-center">
+                  <div class="card-body">
+                    <h4 class="card-title">{{c.title.8}}</h4>
+                    <p>{{c.desc.8}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </a>
+          </div><!-- End Card Item -->
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <a style="text-decoration: none;" href="{{c.link.9}}">
+            <div class="card-item">
+              <div class="row">
+                <div class="col-xl-5">
+                  <div class="card-bg" style="background-image: url({{c.img.9}});"></div>
+                </div>
+                <div class="col-xl-7 d-flex align-items-center">
+                  <div class="card-body">
+                    <h4 class="card-title">{{c.title.9}}</h4>
+                    <p>{{c.desc.9}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </a>
+          </div><!-- End Card Item -->
+
+        </div>
+
+      </div>
+</section><!-- End Constructions Section -->
+
+
+
+{% endblock body %}

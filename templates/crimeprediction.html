@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% block navcrimepredict %}active{% endblock navcrimepredict %}
+{% block title %}Crime Prediction{% endblock title %}
+{% load static %}
+{% block body %}
+
+    <!-- ======= Breadcrumbs ======= -->
+<div class="breadcrumbs d-flex align-items-center" style="background-image: url('static/img/27.jpg');">
+        <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+  
+          <h2>Predict</h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Predict</li>
+          </ol>
+  
+        </div>
+</div><!-- End Breadcrumbs -->
+
+<div class="container p-5" style="height:1000px">
+    <div class="row">
+        <div class="col-12">
+            <form action="/crime_predict" method="post">
+                {% csrf_token %}
+                <div class="row p-5 pb-0">
+                    <div class="col-4">
+                        <div class="row">
+
+                            <div class="col-12">
+                                <select name = 'predictor' class="form-select form-select-lg">
+                                    <option value="" disabled selected>Choose Predictor:</option>
+                                    <option value="total">total</option>
+                                    <option value="murder">murder</option>
+                                    <option value="rape">rape</option>
+                                    <option value="kidnap">kidnap</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <div class="col-12">
+                                <select name = 'state' class="form-select form-select-lg">
+                                    <option value="" disabled selected>Choose State:</option>
+                                    <option value="AndhraPradesh">Andhra Pradesh</option>
+                                    <option value="ArunachalPradesh">Arunachal Pradesh</option>
+                                    <option value="Assam">Assam</option>
+                                    <option value="Bihar">Bihar</option>
+                                    <option value="Chhattishgarh">Chhattishgarh</option>
+                                    <option value="Goa">Goa</option>
+                                    <option value="Gujarat">Gujarat</option>
+                                    <option value="Haryana">Haryana</option>
+                                    <option value="HimachalPradesh">Himachal Pradesh</option>
+                                    <option value="JammuandKashmir">Jammu and Kashmir</option>
+                                    <option value="Jharkhand">Jharkhand</option>
+                                    <option value="Karnataka">Karnataka</option>
+                                    <option value="Kerala">Kerala</option>
+                                    <option value="MadhyaPradesh">Madhya Pradesh</option>
+                                    <option value="Maharashtra">Maharashtra</option>
+                                    <option value="Manipur">Manipur</option>
+                                    <option value="Meghalaya">Meghalaya</option>
+                                    <option value="Mizoram">Mizoram</option>
+                                    <option value="Nagaland">Nagaland</option>
+                                    <option value="Odisha">Odisha</option>
+                                    <option value="Punjab">Punjab</option>
+                                    <option value="Rajasthan">Rajasthan</option>
+                                    <option value="Sikkim">Sikkim</option>
+                                    <option value="Tamilnadu">Tamilnadu</option>
+                                    <option value="Telengana">Telengana</option>
+                                    <option value="Tripura">Tripura</option>
+                                    <option value="UttarPradesh">Uttar Pradesh</option>
+                                    <option value="Uttarakhand">Uttarakhand</option>
+                                    <option value="WestBengal">West Bengal</option>
+                                    <option value="AndamanNicobar">Andaman Nicobar</option>
+                                    <option value="Chandigarh">Chandigarh</option>
+                                    <option value="DamanandDiuandDadraandNagarHaveli">Daman and Diu and Dadra and Nagar Haveli</option>
+                                    <option value="Delhi">Delhi</option>
+                                    <option value="Lakshadweep">Lakshadweep</option>
+                                    <option value="Puducherry">Puducherry</option>
+                                    <option value="Ladakh">Ladakh</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="row">
+                            <div class="col-12">
+                                <select name = 'year' class="form-select form-select-lg">
+                                    <option value="" disabled selected >Choose Year:</option>
+                                    <option value="2007">2007</option>
+                                    <option value="2023">2023</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row p-5">
+                    <div class="col-12 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-dark btn-lg">Predict</button>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+
+        
+        
+
+    <div class="row">
+        <div class="col-12">
+            <div id="pred">
+                <div class="{{class1}}" style="{{cardstyle}}">
+                    <div style="{{divstyle}}"> </div>
+                    <div class="{{class2}}" style="top:45% ">
+                        <h2 class="card-title d-flex justify-content-center">{{b}}</h2>
+                        <h1 class="card-text d-flex justify-content-center">{{a}}</h1>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock body %}

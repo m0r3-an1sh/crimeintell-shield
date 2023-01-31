@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block title %}Graph{% endblock title %}
+{% block navgraphactive %}active{% endblock navgraphactive %}
+{% block body %}
+
+<div class="breadcrumbs d-flex align-items-center" style="background-image: url('static/img/24.jpg');">
+    <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+      <h2>Graph</h2>
+      <ol>
+        <li><a href="index.html">Home</a></li>
+        <li>Graph</li>
+      </ol>
+
+    </div>
+  </div>
+  
+<div class="container">
+  <div class="row">
+    <div class="section-header p-5">
+      <h2>News Space</h2>
+      <p>Select the feilds above to get updates about the crimes happening in your location</p>
+    </div>
+  </div>
+  <div class="row">
+      <form action="/graph" method="post">
+        {% csrf_token %}
+        <div class="col-12">
+          <div class="row p-5 pb-0">
+            <div class="col-6">
+              <select name = 'language' class="form-select form-select-lg" aria-label=".form-select-sm example">
+                  <option value="" disabled selected>Choose Year:</option>
+                  <option value="2008">2008</option>
+                  <option value="2009">2009</option>
+                  <option value="2010">2010</option>
+                  <option value="2011">2011</option>
+                  <option value="2012">2012</option>
+                  <option value="2013">2013</option>
+                  <option value="2014">2014</option>
+                  <option value="2015">2015</option>
+                  <option value="2016">2016</option>
+                  <option value="2017">2017</option>
+                  <option value="2018">2018</option>
+                  <option value="2019">2019</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <select name = 'page' class="form-select form-select-lg" aria-label=".form-select-sm example">
+                <option value="" disabled selected>Choose State List:</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+          </div>
+          <div class="row p-5">
+            <div class="col-12 d-flex justify-content-center">
+              <button type="submit" class="btn btn-dark btn-lg ">year</button>
+            {% comment %} <h3>{{a}} {{b}}</h3> {% endcomment %}
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="row p-5">
+      <div class="col-12 d-flex justify-content-center ">
+        {% comment %} <img src="data:image/png;base64,{{plot}}" class="border border-3 border-warning shadow-lg"></img> {% endcomment %}
+        {{hidden|safe}}
+      </div>
+    </div>
+</div>
+
+{% endblock body %}

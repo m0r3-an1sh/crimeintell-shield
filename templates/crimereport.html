@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block navcrimereport %}active{% endblock navcrimereport %}
+{% block title %}Report{% endblock title %}
+{% block body %}
+{% load static %}
+
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url({% static '/img/28.jpg' %});">
+        <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+  
+          <h2>Crime Report</h2>
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li>CrimeReport</li>
+          </ol>
+  
+        </div>
+    </div><!-- End Breadcrumbs -->
+
+    <div class="container p-5" style="height:100vh;">
+        <form method="post" action="/crimereport" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+            <div class="mb-3 col-12">
+              <label for="crimeloc" class="form-label col-form-label-lg">Crime Location</label>
+              <input type="text" class="form-control form-control-lg" id="crimeloc" name="crimeloc">
+            </div>
+            <div class="mb-3 col-12">
+                <label for="crimedet" class="form-label col-form-label-lg ">Crime details</label>
+                <input type="text" class="form-control form-control-lg" id="crimedet" name="crimedet">
+            </div>
+
+            <div class="col-12">
+              <label for="crimeproof" class="form-label col-form-label-lg">Crime Proof Image</label>
+              <input class="form-control form-control-lg" id="crimeproof" name="crimeproof" type="file">
+            </div>
+            <div class="p-3 col-12 d-flex justify-content-center">
+              <button type="submit" class="btn btn-dark btn-lg">Submit</button>
+            </div>
+          </div>
+        </form>
+    </div>
+
+{% endblock body %}
+  

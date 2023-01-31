@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block navservicesactive %}active{% endblock navservicesactive %}
+{% block title %}service details{% endblock title %}
+{% block body %}
+{% load static %}
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('static/img/15.jpg');">
+      <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+        <h2>Service Details</h2>
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li>Service Details</li>
+        </ol>
+
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Service Details Section ======= -->
+    <section id="service-details" class="service-details">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4">
+            <div class="services-list">
+              <a id="remodel1" class="active">Crime Detection</a>
+              <a id="construct1">Crime Prediction</a>
+              <a id="product1">Crime Reporting</a>
+              <a id="repair1">Crime News</a>
+              <a id="designn1">SOS</a>
+              <a id="mesignn1">Crime Data</a>
+            </div>
+
+            <h4>Our Services</h4>
+            <p>Crime analytics services are provided to help law enforcement agencies and other organizations analyze crime data and identify patterns, trends, and hotspots in order to prevent and reduce crime.</p>
+          </div>
+
+          <div class="col-lg-8" id="infor">
+            <img src="static/img/16.png" alt="" class="img-fluid services-img" style="width: 736px;height: 465.5px;">
+            <h3>Crime detection refers to the process of identifying, investigating, and gathering evidence of criminal activity. </h3>
+            <p>This can be done through a variety of methods, such as surveillance, interviews, and forensic analysis. Law enforcement agencies, such as police departments, are responsible for detecting and investigating crimes. Additionally, other organizations, such as private investigators, may also be involved in crime detection.</p>
+            <ul>
+              <li><i class="bi bi-check-circle"></i> <span>Surveillance: Observing individuals or groups to gather information about their activities or whereabouts</span></li>
+              <li><i class="bi bi-check-circle"></i> <span>Interviews: Questioning individuals who may have information about a crime</span></li>
+              <li><i class="bi bi-check-circle"></i> <span>Intelligence gathering: Collecting information from various sources to identify potential criminal activity</span></li> 
+            </ul>
+            <p>Law enforcement agencies, such as police departments, are responsible for detecting and investigating crimes. Additionally, other organizations, such as private investigators, may also be involved in crime detection.</p><p>The key goal of crime detection is to identify the individuals responsible for committing a crime and bring them to justice. This is done by collecting evidence, interviewing witnesses, and building a case against the suspect.</p>
+
+        </div>
+
+      </div>
+    </section><!-- End Service Details Section -->
+
+  </main><!-- End #main -->
+
+
+  <script src=" {% static '\js\sevicedetails.js' %}"></script>
+
+{% endblock body %}

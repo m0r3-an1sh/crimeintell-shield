@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{%load customtags%}
+{% block body %}
+
+<main id="main">
+  {% load static %}
+  <!-- ======= Breadcrumbs ======= -->
+  <div class="breadcrumbs d-flex align-items-center" style="background-image: url({% static '/img/22.jpeg' %});">
+    <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+      <h2>Blog Details</h2>
+      <ol>
+        <li><a href="index.html">Home</a></li>
+        <li>Blog Details</li>
+      </ol>
+
+    </div>
+  </div><!-- End Breadcrumbs -->
+
+  <!-- ======= Blog Details Section ======= -->
+  <section id="blog" class="blog">
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+      <div class="row g-5">
+
+        <div class="col-lg-8">
+
+          <article class="blog-details">
+
+            <div class="post-img">
+              <img src="{% static "" %}{{blog.mainimagelink}}" alt="" class="img-fluid w-100" style="height:500px">
+            </div>
+            <h2 class="title">{{blog.title}}</h2>
+
+            <div class="meta-top">
+              <ul>
+                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">Anish More</a></li>
+                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2020-01-01">{{blog.time}}</time></a></li>
+                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">{{commentcount}} Comments</a></li>
+              </ul>
+            </div><!-- End meta top -->
+
+            <div class="content">
+              <p>
+               {{blog.content1}}
+              </p>
+
+              <blockquote>
+                <p>
+                {{blog.quotes}}  
+                </p>
+              </blockquote>
+
+              <p>
+                {{blog.content2}}
+              </p>
+              <h3>{{blog.heading1}}</h3>
+              <p>
+                {{blog.content3}}
+              </p>
+              <img src="{% static "" %}{{blog.descimagelink}}" class="img-fluid w-75" alt="">
+
+              <h3>{{blog.heading2}}</h3>
+              <p>
+              {{blog.content4}}  
+              
+              </p>
+
+            </div><!-- End post content -->
+
+            <div class="meta-bottom">
+
+              <i class="bi bi-tags"></i>
+              <ul class="tags">
+                {% for tag in metatag %}
+                <li><a href="#">{{tag}}</a></li>
+                {% endfor %}
+              </ul>
+            </div><!-- End meta bottom -->
+
+          </article><!-- End blog post -->
+
+          <div class="post-author d-flex align-items-center">
+            <img src="{% static '/img/team/2.jpeg'%}" class="rounded-circle flex-shrink-0" alt="">
+            <div>
+              <h4>Anish More</h4>
+              <div class="social-links">
+                <a href="https://twitters.com/"><i class="bi bi-twitter"></i></a>
+                <a href="https://facebook.com/"><i class="bi bi-facebook"></i></a>
+                <a href="https://instagram.com/"><i class="biu bi-instagram"></i></a>
+              </div>
+              <p>
+                "Believe in yourself and your vision, and don't let fear or doubt hold you back from reaching your goals."
+              </p>
+            </div>
+          </div><!-- End post author -->
+
+          <div class="comments">
+
+            <h4 class="comments-count">{{commentcount}} comments</h4>
+
+            {% for comment in comment %}
+            <div id="comment-1" class="comment">
+              <div class="d-flex">
+                <div class="comment-img"><img src="{% static '/img/blog/comment.png'%}" alt=""></div>
+                <div>
+                  <h5><a href="">{{comment.user.username}}</a></h5>
+                  <time datetime="2020-01-01">{{comment.timestamp}}</time>
+                  <p>
+                    {{comment.comment}}
+                  </p>
+                </div>
+              </div>
+            </div><!-- End comment #1 -->
+            {% endfor %}
+
+            <div class="reply-form">
+
+              <h4>Leave a Reply</h4>
+              <p>Your email address will not be published. Required fields are marked * </p>
+              <form action="/comment" method="post">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col form-group">
+                    <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
+                  </div>
+                  <input type="hidden" name="sno" value="{{blog.sno}}"/>
+                </div>
+                <button type="submit" name="commentbutton" class="btn btn-primary">Post Comment</button>
+
+              </form>
+
+            </div>
+
+          </div><!-- End blog comments -->
+
+        </div>
+
+        <div class="col-lg-4">
+
+          <div class="sidebar">
+            <div class="sidebar-item categories">
+              <h3 class="sidebar-title">Categories</h3>
+              <ul class="mt-3">
+                <li><a href="#">Murder {{Murdercount}}</span></a></li>
+                <li><a href="#">Kidnapping {{Kidnappingcount}}<span></a></li>
+                <li><a href="#">Dacoity {{Dacoitycount}}<span></a></li>
+                <li><a href="#">Analytics {{Analyticscount}}<span></a></li>
+                <li><a href="#">Rape {{Rapecount}}<span></a></li>
+                <li><a href="#">Molestation {{Molestationcount}}<span></a></li>
+              </ul>
+            </div><!-- End sidebar categories-->
+
+            <div class="sidebar-item recent-posts">
+              <h3 class="sidebar-title">Recent Posts</h3>
+
+              <div class="mt-3">
+
+                {% for recent in recblog %}
+                <div class="post-item mt-3">
+                  <img src="{% static ''%}{{recent.thumbimagelink}}" alt="">
+                  <div>
+                    <h4><a href="/blogpost/{{recent.slug}}">{{recent.title}}</a></h4>
+                    <time datetime="2020-01-01">{{recent.time}}</time>
+                  </div>
+                </div><!-- End recent post item-->
+                {% endfor %}
+              </div>
+
+            </div><!-- End sidebar recent posts-->
+
+            <div class="sidebar-item tags">
+              <h3 class="sidebar-title">Tags</h3>
+              <ul class="mt-3">
+
+                {% for tag in metatag %}
+                <li><a href="#">{{tag}}</a></li>
+                {% endfor %}
+              </ul>
+            </div><!-- End sidebar tags-->
+
+          </div><!-- End Blog Sidebar -->
+
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End Blog Details Section -->
+
+</main><!-- End #main -->
+
+{% endblock body %}
+
+
+
+

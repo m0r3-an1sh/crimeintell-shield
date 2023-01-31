@@ -1,0 +1,133 @@
+
+{% extends 'base.html' %}
+{% block navblogactive %}active{% endblock navblogactive %}
+{% block title %}blog{% endblock title %}
+{%load static %}
+{% block body %}
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('static/img/22.jpeg');">
+      <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+        <h2>Blog</h2>
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li>Blog</li>
+        </ol>
+
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Section ======= -->
+    {% comment %} <section id="blog" class="blog">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4 posts-list">
+            {% for i in blogs %}
+          <div class="col-xl-4 col-md-6">
+            <div class="post-item position-relative h-100">
+
+              <div class="post-img position-relative overflow-hidden">
+                <img src="{% static "" %}{{i.mainimagelink}}" class="img-fluid w-100" alt="">
+                <span class="post-date">{{i.time}}</span>
+              </div>
+
+              <div class="post-content d-flex flex-column">
+
+                <h3 class="post-title">{{i.title}}</h3>
+
+                <div class="meta d-flex align-items-center">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-person"></i> <span class="ps-2">Anish</span>
+                  </div>
+                  <span class="px-3 text-black-50">/</span>
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-folder2"></i> <span class="ps-2">Categoryfillnexttime</span>
+                  </div>
+                </div>
+
+                <p>
+                    {{i.content1|slice:"150"}}
+                </p>
+
+                <hr>
+
+                <a href="blogpost/{{i.slug}}" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+
+              </div>
+
+            </div>
+          </div><!-- End post list item -->
+          {% endfor %}
+ 
+        <div class="blog-pagination">
+          <ul class="justify-content-center">
+            <li><a href="#">1</a></li>
+            <li class="active"><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+          </ul>
+        </div><!-- End blog pagination -->
+
+      </div>
+    </section><!-- End Blog Section --> {% endcomment %}
+
+    <section id="blog" class="blog">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4 posts-list">
+            {% for i in page %}
+          <div class="col-xl-4 col-md-6">
+            <div class="post-item position-relative h-100">
+
+              <div class="post-img position-relative overflow-hidden">
+                <img src="{% static "" %}{{i.thumbimagelink}}" class="img-fluid w-100" style="height:250px" alt="">
+                <span class="post-date">{{i.time}}</span>
+              </div>
+
+              <div class="post-content d-flex flex-column">
+
+                <h3 class="post-title">{{i.title|slice:"47"}}...</h3>
+
+                <div class="meta d-flex align-items-center">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-person"></i> <span class="ps-2">Anish</span>
+                  </div>
+                  <span class="px-3 text-black-50">/</span>
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-folder2"></i> <span class="ps-2">{{i.category}}</span>
+                  </div>
+                </div>
+
+                <p>
+                    {{i.content1|slice:"150"}}
+                </p>
+
+                <hr>
+
+                <a href="blogpost/{{i.slug}}" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+
+              </div>
+
+            </div>
+          </div><!-- End post list item -->
+          {% endfor %}
+ 
+        <div class="blog-pagination">
+          <ul class="justify-content-center">
+
+            {% for i in nopages %}
+            
+            <li><a href="?page={{i}}" >{{i}}</a></li>
+            
+            {% endfor %}
+          </ul>
+        </div><!-- End blog pagination -->
+
+      </div>
+    </section><!-- End Blog Section -->
+
+
+
+</main>
+{% endblock body %}

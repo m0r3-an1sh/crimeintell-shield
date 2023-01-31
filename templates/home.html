@@ -1,0 +1,518 @@
+{% extends 'base.html' %}
+{% block navhomeactive %}active{% endblock navhomeactive %}
+{% block title %}home{% endblock title %}
+{% block body %}
+{% load static %}
+
+<section id="hero" class="hero">
+
+    <div class="info d-flex align-items-center">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6 text-center ">
+            <h2 data-aos="fade-down ">Welcome to <span>Crime&nbsp;Intell<span style="color:#feb900;">!</span>Sheild</span></h2>
+            <p data-aos="fade-up">Welcome to our crime analytics website, where we strive to provide you with the latest and most comprehensive information on crime trends, patterns, and statistics, So you can stay informed and stay safe.</p>
+            <a data-aos="fade-up" data-aos-delay="200" href="#get-started" class="btn-get-started">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background-color:#000000;" id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+
+      <div class="carousel-item active" style="background-image: url(static/img/hero-carousel/6.jpeg); filter:blur(3px); opacity: 75%;"></div>
+      <div class="carousel-item" style="background-image: url(static/img/hero-carousel/7.jpg); filter:blur(3px); opacity: 75%;"></div>
+      <div class="carousel-item" style="background-image: url(static/img/hero-carousel/3.jpg); filter:blur(3px); opacity: 75%;"></div>
+      <div class="carousel-item" style="background-image: url(static/img/hero-carousel/4.jpg); filter:blur(3px); opacity: 75%;"></div>
+      <div class="carousel-item" style="background-image: url(static/img/hero-carousel/5.jpg); filter:blur(3px); opacity: 75%;"></div>
+
+      <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+      </a>
+
+      <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+      </a>
+
+    </div>
+
+</section>
+<main id="main">
+
+    <!-- ======= Get Started Section ======= -->
+    <section id="get-started" class="get-started section-bg">
+      <div class="container">
+
+        <div class="row justify-content-between gy-4">
+
+          <div class="col-lg-6 d-flex align-items-center" data-aos="fade-up">
+            <div class="content">
+              <h3>Reasons to count on us</h3>
+              <p>We strive to provide you with the latest and most comprehensive information on crime trends, patterns, and statistics. Our website is designed to offer valuable insights on crime across different regions, cities, and states, helping you to stay informed and stay safe. We use cutting-edge technology and advanced analytics to provide you with accurate and up-to-date data on crime rates, types of crimes, and crime hotspots. Our website is easy to navigate, and you can find the information you need quickly and easily. </p>
+              <p>With our crime analytics, you can access data on the most recent crime incidents, crime rate trends, and crime statistics in your area, providing you with the information you need to make informed decisions about your safety. Our website also provides tips on how to protect yourself and your loved ones from crime, and how to stay informed about the latest crime trends. We use cutting-edge technology and advanced analytics to provide you with accurate and up-to-date data on crime rates, types of crimes, and crime hotspots.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-5 " data-aos="fade">
+            <form action="contactform" method="post">
+              {% csrf_token %}
+              <div class="content">
+              <h3>Get a quote</h3>
+              <p>Vel nobis odio laboriosam et hic voluptatem. Inventore vitae totam. Rerum repellendus enim linead sero park flows.</p>
+            </div>
+              <div class="row gy-3">
+
+                <div class="col-md-12">
+                  <input type="text" name="conname" class="form-control" placeholder="Name" required>
+                </div>
+
+                <div class="col-md-12 ">
+                  <input type="email" class="form-control" name="conemail" placeholder="Email" required>
+                </div>
+
+                <div class="col-md-12">
+                  <input type="text" class="form-control" name="conphone" placeholder="Phone" required>
+                </div>
+
+                <div class="col-md-12">
+                  <textarea class="form-control" name="conmessage" rows="6" placeholder="Message" required></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <button type="submit" class="btn" style="background-color:#feb900">Get a quote</button>
+                </div>
+
+              </div>
+            </form>
+          </div><!-- End Quote Form -->
+
+        </div>
+
+      </div>
+    </section><!-- End Get Started Section -->
+
+    <!-- ======= Constructions Section ======= -->
+    <section id="constructions" class="constructions">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>Criminal Actvities</h2>
+          <p>Criminal activity refers to any actions or behaviors that are prohibited by criminal law and punishable by the state.</p>
+        </div>
+
+        <div class="row gy-4">
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-item">
+              <div class="row">
+                <div class="col-xl-5">
+                  <div class="card-bg" style="background-image: url(static/img/1.jpg);"></div>
+                </div>
+                <div class="col-xl-7 d-flex align-items-center">
+                  <div class="card-body">
+                    <h4 class="card-title">Murders and Assaults.</h4>
+                    <p>Murder is a criminal offense that involves the intentional killing of another person. It is considered to be the most serious of all criminal offenses, punishable by life imprisonment or the death penalty in many countries.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Card Item -->
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="card-item">
+              <div class="row">
+                <div class="col-xl-5">
+                  <div class="card-bg" style="background-image: url(static/img/2.jpg);"></div>
+                </div>
+                <div class="col-xl-7 d-flex align-items-center">
+                  <div class="card-body">
+                    <h4 class="card-title">Kidnapping and Abductions.</h4>
+                    <p>Kidnapping is a criminal offense that involves the illegal confinement, abduction, or imprisonment of another person against their will. It is considered a serious crime.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Card Item -->
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="card-item">
+              <div class="row">
+                <div class="col-xl-5">
+                  <div class="card-bg" style="background-image: url(static/img/3.jpg);"></div>
+                </div>
+                <div class="col-xl-7 d-flex align-items-center">
+                  <div class="card-body">
+                    <h4 class="card-title">Non-consensual sexual crimes</h4>
+                    <p>The criminal offenses that involve sexual contact or behavior without the consent of the victim. These crimes include rape, molestation, sexual harassment, and sexual assault. They are serious crimes.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Card Item -->
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="card-item">
+              <div class="row">
+                <div class="col-xl-5">
+                  <div class="card-bg" style="background-image: url(static/img/4.jpg);"></div>
+                </div>
+                <div class="col-xl-7 d-flex align-items-center">
+                  <div class="card-body">
+                    <h4 class="card-title">Theft and Dacoity</h4>
+                    <p>Theft is a criminal offense that involves the unauthorized taking of property belonging to another person. Depending on the value of the stolen property and the methods used, theft can be punishable by fines, imprisonment, or both.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Card Item -->
+
+        </div>
+
+      </div>
+    </section><!-- End Constructions Section -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>Our Solutions</h2>
+          <p>We Provide a set of tools and techniques used to collect, analyze, and interpret crime data in order to identify patterns, trends, and hotspots of criminal activity.</p>
+        </div>
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item  position-relative">
+              <div class="icon">
+                <i class="fa-solid fa-user-secret"></i>
+              </div>
+              <h3>Crime Detect</h3>
+              <p>Crime detection refers to the process of identifying, investigating and gathering evidence of criminal activity using AI.</p>
+              <a href="servicedetails" class="readmore stretched-link">Learn more <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="fa-solid fa-microchip"></i>
+              </div>
+              <h3>Crime Predict</h3>
+              <p>Crime prediction refers to the use of data analysis and statistical modeling techniques to forecast where and when crime is likely to occur. </p>
+              <a href="servicedetails" class="readmore stretched-link">Learn more <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="fa-solid fa-users-viewfinder"></i>
+              </div>
+              <h3>Crime Report</h3>
+              <p>Reporting crime refers to the act of informing law enforcement officials about a criminal incident or suspicious activity.</p>
+              <a href="servicedetails" class="readmore stretched-link">Learn more <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="fa-solid fa-newspaper"></i>
+              </div>
+              <h3>Crime News</h3>
+              <p>Crime news refers to news articles, broadcasts, and other media that report on criminal activity and its impact on society.</p>
+              <a href="servicedetails" class="readmore stretched-link">Learn more <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="fa-solid fa-bell"></i>
+              </div>
+              <h3>SOS</h3>
+              <p>An SOS button, also known as a panic button. The purpose of an SOS button is to quickly and easily call for help in an emergency situation.</p>
+              <a href="servicedetails" class="readmore stretched-link">Learn more <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="fa-solid fa-database"></i>
+              </div>
+              <h3>Crime Data</h3>
+              <p>Crime data refers to information and statistics related to criminal activity, including the frequency, location, and type of crimes committed.</p>
+              <a href="servicedetails" class="readmore stretched-link">Learn more <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div><!-- End Service Item -->
+
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
+    <!-- ======= Alt Services Section ======= -->
+    <section id="alt-services" class="alt-services">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row justify-content-around gy-4">
+          <div class="col-lg-6 img-bg" style="background-image: url(static/img/5.jpg);" data-aos="zoom-in" data-aos-delay="100"></div>
+
+          <div class="col-lg-5 d-flex flex-column justify-content-center">
+            <h3>Crime intelligence can be used to</h3>
+            <p>Crime intelligence, also known as criminal intelligence, is the process of gathering, analyzing, and disseminating information about criminal activity to help law enforcement agencies prevent, investigate, and solve crimes.</p>
+
+            <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="100">
+              <i class="bi bi-search flex-shrink-0"></i>
+              <div>
+                <h4><a href="" class="stretched-link">Criminal identification</a></h4>
+                <p>Crime identification refers to the process of determining characteristics of a crime, as well as identifying the person or group responsible for committing it. </p>
+              </div>
+            </div><!-- End Icon Box -->
+
+            <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="200">
+              <i class="bi bi-yin-yang flex-shrink-0"></i>
+              <div>
+                <h4><a href="" class="stretched-link">Scope and Nature of Crimes</a></h4>
+                <p>The scope and nature of criminal activity refers to the types and frequency of crimes committed, as well as the characteristics of those who commit them</p>
+              </div>
+            </div><!-- End Icon Box -->
+
+            <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-sign-dead-end flex-shrink-0"></i>
+              <div>
+                <h4><a href="" class="stretched-link">Potential Criminal Threats</a></h4>
+                <p>Criminal threat identification involves using various methods and tools to identify individuals or groups who may pose a threat to public safety.</p>
+              </div>
+            </div><!-- End Icon Box -->
+
+            <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-graph-down-arrow flex-shrink-0"></i>
+              <div>
+                <h4><a href="" class="stretched-link">Crime Trends Analysis</a></h4>
+                <p>Crime trends refer to patterns or changes in the frequency and type of criminal activity over a specific period of time.</p>
+              </div>
+            </div><!-- End Icon Box -->
+
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Alt Services Section -->
+
+    <!-- ======= Features Section ======= -->
+    <section id="features" class="features section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <ul class="nav nav-tabs row  g-2 d-flex">
+
+          <li class="nav-item col-3">
+            <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#tab-1">
+              <h4>Cameras</h4>
+            </a>
+          </li><!-- End tab nav item -->
+
+          <li class="nav-item col-3">
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-2">
+              <h4>Tracking</h4>
+            </a><!-- End tab nav item -->
+
+          <li class="nav-item col-3">
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-3">
+              <h4>Biometrics</h4>
+            </a>
+          </li><!-- End tab nav item -->
+
+          <li class="nav-item col-3">
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-4">
+              <h4>Security Systems</h4>
+            </a>
+          </li><!-- End tab nav item -->
+
+        </ul>
+
+        <div class="tab-content">
+
+          <div class="tab-pane active show" id="tab-1">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
+                <h3>Surveillance cameras:</h3>
+                <p class="fst-italic">
+                  Surveillance cameras can be used to monitor public spaces and deter criminal activity. They can also be used to identify suspects and gather evidence after a crime has been committed.
+                </p>
+                <ul>
+                  <li><i class="bi bi-check2-all"></i> The presence of surveillance cameras can deter criminal activity</li>
+                  <li><i class="bi bi-check2-all"></i> Surveillance cameras can provide valuable evidence for investigations and can be used to identify suspects and track their movements.</li>
+                  <li><i class="bi bi-check2-all"></i> With the help of internet and smart technology, these cameras can be remotely monitored which can be helpful for security personnel.</li>
+                </ul>
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2 text-center" data-aos="fade-up" data-aos-delay="200">
+                <img src="static/img/6.jpg" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div><!-- End tab content item -->
+
+          <div class="tab-pane" id="tab-2">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+                <h3>GPS tracking</h3>
+                <p class="fst-italic">
+                  GPS tracking can be used to track the movements of individuals, vehicles, and assets, helping to prevent crimes such as theft and kidnapping.
+                </p>
+                <ul>
+                  <li><i class="bi bi-check2-all"></i> Can be used to track and recover stolen vehicles or assets</li>
+                  <li><i class="bi bi-check2-all"></i> Allows law enforcement to monitor the movements of suspects</li>
+                  <li><i class="bi bi-check2-all"></i> Can be used to locate missing persons</li>
+                  <li><i class="bi bi-check2-all"></i> Can provide evidence for prosecution</li>
+                  <li><i class="bi bi-check2-all"></i> Can help in investigations by providing location data for crime scenes.</li>
+                </ul>
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="static/img/7.jpg" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div><!-- End tab content item -->
+
+          <div class="tab-pane" id="tab-3">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+                <h3>Biometrics</h3>
+                <ul>
+                  <li><i class="bi bi-check2-all"></i>Can be used to identify suspects and criminals through fingerprint, facial recognition, DNA analysis, and other methods.</li>
+                  <li><i class="bi bi-check2-all"></i>Can provide a higher level of security for buildings, facilities, and sensitive areas.</li>
+                  <li><i class="bi bi-check2-all"></i>Can be used for access control in restricted areas</li>
+                </ul>
+                <p class="fst-italic">
+                  Biometric technologies such as fingerprint scanners, facial recognition, and iris scanners can be used to enhance security and prevent identity fraud.
+                </p>
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="static/img/8.jpg" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div><!-- End tab content item -->
+
+          <div class="tab-pane" id="tab-4">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+                <h3>AI-Enabled Security Systems</h3>
+                <p class="fst-italic">
+                  AI-enabled security systems can detect and respond to potential threats in real-time. This can include things like facial recognition, motion detection, and license plate recognition to identify potential threats and alert the authorities.
+                </p>
+                <ul>
+                  <li><i class="bi bi-check2-all"></i> Can be used for predictive analytics and forecasting potential crime scenarios.</li>
+                  <li><i class="bi bi-check2-all"></i> Can analyze large amounts of data quickly and accurately to identify patterns, anomalies, and potential threats.</li>
+                  <li><i class="bi bi-check2-all"></i> Can provide real-time monitoring and alerts of suspicious activity.</li>
+                  <li><i class="bi bi-check2-all"></i> Can learn and adapt over time to improve performance and accuracy.</li>
+                </ul>
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="static/img/9.jpg" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div><!-- End tab content item -->
+
+        </div>
+
+      </div>
+    </section><!-- End Features Section -->
+
+        <!-- ======= Recent Blog Posts Section ======= -->
+        <section id="recent-blog-posts" class="recent-blog-posts">
+          <div class="container" data-aos="fade-up">
+    
+        
+        
+          <div class=" section-header">
+            <h2>Recent Blog Posts</h2>
+            <p>In commodi voluptatem excepturi quaerat nihil error autem voluptate ut et officia consequuntu</p>
+          </div>
+    
+          <div class="row gy-5">
+    
+            {% for recent in recblog %}
+            <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="post-item position-relative h-100">
+    
+                <div class="post-img position-relative overflow-hidden">
+                  <img src="{% static ''%}{{recent.thumbimagelink}}" class="img-fluid w-100" alt="">
+                  <span class="post-date">{{recent.time}}</span>
+                </div>
+    
+                <div class="post-content d-flex flex-column">
+    
+                  <h3 class="post-title">{{recent.title}}</h3>
+    
+                  <div class="meta d-flex align-items-center">
+                    <div class="d-flex align-items-center">
+                      <i class="bi bi-person"></i> <span class="ps-2">Anish More</span>
+                    </div>
+                    <span class="px-3 text-black-50">/</span>
+                    <div class="d-flex align-items-center">
+                      <i class="bi bi-folder2"></i> <span class="ps-2">Crime Analytics</span>
+                    </div>
+                  </div>
+    
+                  <hr>
+    
+                  <a href="/blogpost/{{recent.slug}}" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+    
+                </div>
+    
+              </div>
+            </div><!-- End post item -->
+            {% endfor %}
+    
+    
+          </div>
+    
+          </div>
+      </section>
+        <!-- End Recent Blog Posts Section -->
+
+        <!-- ======= Testimonials Section ======= -->
+        <section id="testimonials" class="testimonials section-bg">
+          <div class="container" data-aos="fade-up">
+    
+            <div class="section-header">
+              <h2>Testimonials</h2>
+              <p>Quam sed id excepturi ccusantium dolorem ut quis dolores nisi llum nostrum enim velit qui ut et autem uia reprehenderit sunt deleniti</p>
+            </div>
+            
+
+            <div class="slides-2 swiper">
+              <div class="swiper-wrapper">
+                {% for tes in testimonials %}
+                <div class="swiper-slide">
+                  <div class="testimonial-wrap">
+                    <div class="testimonial-item">
+                      <img src="{{tes.tes_image}}" class="testimonial-img" alt="">
+                      <h3>{{tes.name}}</h3>
+                      <h4>{{tes.occupation}}</h4>
+                      <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                      </div>
+                      <p>
+                        <i class="bi bi-quote quote-icon-left"></i>
+                        {{tes.tes_msg}}
+                        <i class="bi bi-quote quote-icon-right"></i>
+                      </p>
+                    </div>
+                  </div>
+                </div><!-- End testimonial item -->
+                {% endfor %}
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+    
+          </div>
+        </section><!-- End Testimonials Section -->
+
+
+
+</main>
+
+
+{% endblock body %}

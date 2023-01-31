@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en" style="overflow-x: hidden !important;">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}{% endblock title %}</title>
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"rel="stylesheet"integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link href="{% static '/vendor/bootstrap-icons/bootstrap-icons.css'%}" rel="stylesheet">
+    <link href="{% static '/vendor/fontawesome-free/css/all.min.css'%}" rel="stylesheet">
+    <link href="{% static '/vendor/aos/aos.css'%}" rel="stylesheet">
+    <link href="{% static '/vendor/glightbox/css/glightbox.min.css'%}" rel="stylesheet">
+    <link href="{% static '/vendor/swiper/swiper-bundle.min.css'%}" rel="stylesheet">
+    <link href="{% static '/css/main.css'%}" rel="stylesheet">
+    <link href="{% static '/img/favicon.png'%}" rel="icon">
+    <link href="{% static '/img/apple-touch-icon.png'%}" rel="apple-touch-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    {% load static %}
+<header id="header" class="header">
+      <div class="container-fluid container-xl d-flex  justify-content-between position-relative">
+  
+        <a href="/" class="logo d-flex align-items-center">
+          <!-- Uncomment the line below if you also wish to use an image logo -->
+          <!-- <img src="static/img/logo.png" alt=""> -->
+          <h1>C<span>!</span>S</h1>
+        </a>
+  
+        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a class="{% block navhomeactive %}{% endblock navhomeactive %}"aria-current="page"href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/services" class="{% block navservicesactive %}{% endblock navservicesactive %}">Services</a></li>
+            <li><a class="{% block navblogactive %}{% endblock navblogactive %}"href="/blog?page=1">Blog</a></li>
+            <li><a class="{% block navconactive %}{% endblock navconactive %}"href="/contact">Contact</a></li>
+            <li><a class=" {% block navgraphactive %}{% endblock navgraphactive %}"aria-current="page" href="/graph">Graph</a></li>            
+            {% if user.is_authenticated %}
+            <li class="dropdown"><a href="#"><span>{{request.user}}</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+              <ul>
+                <li>
+                <form action="logout" method="post">
+                  {% csrf_token %}
+                  <a>
+                  <button type="submit" class="dropdown-item">logout</button>
+                </a>
+              </form>
+            </li>
+              <li>
+                <a class=" {% block navcrimeactive %}{% endblock navcrimeactive %}"href="/crime_detect">CrimeDetect</a>
+              </li>
+              <li>
+                <a class="nav-link {% block navcrimesearch %}{% endblock navcrimesearch %}"href="/crime_search">CrimeSearch</a>
+              </li>
+              <li>
+                <a class="nav-link {% block navcrimepredict %}{% endblock navcrimepredict %}"href="/crime_predict">CrimePredict</a>
+              </li>
+              <li>
+                <a class="nav-link {% block navcrimereport %}{% endblock navcrimereport %}"href="/crimereport">CrimeReport</a>
+              </li>
+              <li>
+                <a class="nav-link {% block navunsafereport %}{% endblock navunsafereport %}"href="/unsafereport">UnsafeReport</a>
+              </li>
+              </ul>
+            </li>
+            {% else %}
+            <li>
+        
+              <!-- Button trigger modal -->
+              <button class="border-0 bg-transparent" type="button" data-toggle="modal"data-target="#signupModal" style="color: rgba(255, 255, 255, 0.6);">
+                <a >
+                signup
+              </a>
+              </button>
+      
+            </li>
+
+            <li>
+              <!-- Button trigger modal -->
+              <button type="button"class="border-0 bg-transparent"data-toggle="modal"data-target="#loginModal"style="color: rgba(255, 255, 255, 0.6);">
+              <a>
+                login
+              </a>
+              </button>
+            </li>
+
+            {% endif %}
+          </ul>
+        </nav><!-- .navbar -->
+  
+      </div>
+
+      {% for message in messages %}
+      
+      <div
+        class="alert alert-success alert-dismissible p-2 fade show d-flex justify-content-between"
+        role="alert"
+      >
+        {{ message }}
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+  {% endfor %} 
+
+</header><!-- End Header -->
+  
+    <!--signup Modal -->
+<div class="modal fade" id="signupModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="signupModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="signupModaltitle">Signup</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form
+            novalidate
+            action="signup"
+            method="post"
+            class="requires-validation"
+          >
+            {% csrf_token %}
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="uname">UserName</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="uname"
+                  name="uname"
+                  placeholder="Enter UserName"
+                  required
+                />
+                <div class="valid-feedback">Username field is valid!</div>
+                <div class="invalid-feedback">
+                  Username field cannot be blank!
+                </div>
+                <br />
+              </div>
+
+              <div class="form-group">
+                <label for="fname">FirstName</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fname"
+                  name="fname"
+                  placeholder="Enter FirstName"
+                  required
+                />
+                <div class="valid-feedback">Firstname field is valid!</div>
+                <div class="invalid-feedback">
+                  Firstname field cannot be blank!
+                </div>
+                <br />
+              </div>
+
+              <div class="form-group">
+                <label for="lname">LastName</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="lname"
+                  name="lname"
+                  placeholder="Enter LastName"
+                  required
+                />
+                <div class="valid-feedback">Lastname field is valid!</div>
+                <div class="invalid-feedback">
+                  Lastname field cannot be blank!
+                </div>
+                <br />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  aria-describedby="emailHelp"
+                  placeholder="Enter email"
+                  required
+                />
+                <div class="valid-feedback">email field is valid!</div>
+                <div class="invalid-feedback">email field cannot be blank!</div>
+                <br />
+              </div>
+
+              <div class="form-group">
+                <label for="loc">Location</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="loc"
+                  name="loc"
+                  placeholder="Enter Living Location"
+                  required
+                />
+                <div class="valid-feedback">Location field is valid!</div>
+                <div class="invalid-feedback">Location field cannot be blank!</div>
+                <br />
+              </div>
+
+              <div class="form-group">
+                <label for="userteleid">Telegram id</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="userteleid"
+                  name="userteleid"
+                  placeholder="Enter Your Telegram Id"
+                  required
+                />
+                <div class="valid-feedback">Telegram field is valid!</div>
+                <div class="invalid-feedback">Telegram field cannot be blank!</div>
+                <br />
+              </div>
+
+              <div class="form-group">
+                <label for="otherteleid">Trustees Teleid</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="otherteleid"
+                  name="otherteleid"
+                  placeholder="Enter Your trustee's Telegram Id"
+                  required
+                />
+                <div class="valid-feedback">Telegram field is valid!</div>
+                <div class="invalid-feedback">Telegram field cannot be blank!</div>
+                <br />
+              </div>
+
+              <div class="form-group">
+                <label for="EmerMes">Emergency Messages</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="EmerMes"
+                  name="EmerMes"
+                  placeholder="Enter A Msg To Your Trustee In Case Of Emergency"
+                  required
+                />
+                <div class="valid-feedback">Emergency Msg field is valid!</div>
+                <div class="invalid-feedback">Emergency Msg field cannot be blank!</div>
+                <br />
+              </div>
+
+              <div class="form-group">
+                <label for="pass1">Choose Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="pass1"
+                  name="pass1"
+                  placeholder="Password"
+                  required
+                />
+                <div class="valid-feedback">Password field is valid!</div>
+                <div class="invalid-feedback">
+                  Password field cannot be blank!
+                </div>
+                <br />
+              </div>
+
+              <div class="form-group">
+                <label for="pass2">Confirm Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="pass2"
+                  name="pass2"
+                  placeholder="Password"
+                  required
+                />
+                <div class="valid-feedback">Password field is valid!</div>
+                <div class="invalid-feedback">
+                  Password field cannot be blank!
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" >Signup</button>
+            </div>
+          </form>
+        </div>
+      </div>
+</div>
+
+    <!--login Modal -->
+<div
+      class="modal fade"
+      id="loginModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="loginModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="loginModaltitle">Login</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form
+            novalidate
+            action="login"
+            method="post"
+            class="requires-validation"
+          >
+            {% csrf_token %}
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="email1"
+                  name="email1"
+                  aria-describedby="emailHelp"
+                  placeholder="Enter email"
+                  required
+                />
+                <div class="valid-feedback">email field is valid!</div>
+                <div class="invalid-feedback">email field cannot be blank!</div>
+                <br />
+              </div>
+
+              <div class="form-group">
+                <label for="logpass1">Enter Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="logpass1"
+                  name="logpass1"
+                  placeholder="Password"
+                  required
+                />
+                <div class="valid-feedback">password field is valid!</div>
+                <div class="invalid-feedback">
+                  password field cannot be blank!
+                </div>
+                <br />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+</div>
+
+
+{% block body %}{% endblock body %}
+<footer id="footer" class="footer" style="background-image:url(static/img/30.jpg);">
+
+      <div class="footer-content position-relative">
+        <div class="container">
+          <div class="row">
+  
+            <div class="col-lg-4 col-md-6">
+              <div class="footer-info ">
+                <h3><span class="text-light">Crime&nbsp;Intell<span style="color:#feb900;">!</span>Sheild</span></h3>
+                <p>
+                  Flat No:017,<br>
+                  More Complex,<br>Mumbai:400081<br><br>
+                  <strong>Phone:</strong> +91 915 220 9434<br>
+                  <strong>Email:</strong> anishmore782@gmail.com<br>
+                </p>
+                <div class="social-links d-flex mt-3">
+                  <a href="https://twitter.com/" class="d-flex align-items-center justify-content-center"><i class="bi bi-twitter"></i></a>
+                  <a href="https://www.facebook.com/" class="d-flex align-items-center justify-content-center"><i class="bi bi-facebook"></i></a>
+                  <a href="https://www.instagram.com/m0r3_an1sh" class="d-flex align-items-center justify-content-center"><i class="bi bi-instagram"></i></a>
+                  <a href="https://www.linkedin.com/in/anish-more/" class="d-flex align-items-center justify-content-center"><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div><!-- End footer info column-->
+  
+            <div class="col-lg-2 col-md-3 footer-links">
+              <h4>Useful Links</h4>
+              <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About us</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/blog?page=1">Blogs</a></li>
+                <li><a href="/contact">Contact</a></li>
+              </ul>
+            </div><!-- End footer links column-->
+  
+            <div class="col-lg-2 col-md-3 footer-links">
+              <h4>Our Services</h4>
+              <ul>
+                <li><a href="/crime_detect">Crime Detect</a></li>
+                <li><a href="/crime_search">Crime Search</a></li>
+                <li><a href="/crime_predict">Crime Predict</a></li>
+                <li><a href="/crimereport">Crime Report</a></li>
+                <li><a href="/unsafereport">Unsafe Report</a></li>
+              </ul>
+            </div><!-- End footer links column-->
+  
+            <div class="col-lg-2 col-md-3 footer-links">
+              <h4> <a href="/servicedetails" class="text-light"> Service Details </a></h4>
+              <ul>
+                <li><a id="remodel">Crime Detection</a></li>
+                <li><a id="construct">Crime Prediction</a></li>
+                <li><a id="product">Crime Reporting</a></li>
+                <li><a id="repair">Crime News</a></li>
+                <li><a id="designn">SOS</a></li>
+                <li><a id="mesignn">Crime Data</a></li>
+              </ul>
+            </div><!-- End footer links column-->
+  
+            <div class="col-lg-2 col-md-3 footer-links">
+              <h4><a href="/blog?page=1"></a> Blogs</h4>
+              <ul>
+                {% for recent in revblog %}
+                <li><a href="/blogpost/{{recent.slug}}">{{recent.title|slice:"20"}}...</a></li>
+                {% endfor %}
+              </ul>
+            </div><!-- End footer links column-->
+  
+          </div>
+        </div>
+      </div>
+  
+      <div class="footer-legal text-center position-relative">
+        <div class="container">
+          <div class="copyright">
+            &copy; Copyright <strong><span>Crime&nbsp;Intell<span style="color:#feb900;">!</span>Sheild</span></strong>. All Rights Reserved
+          </div>
+          <div class="credits">
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/upconstruction-bootstrap-construction-website-template/ -->
+            Designed by <a href="/about">Anish More</a>
+          </div>
+        </div>
+      </div>
+  
+    </footer>
+
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <div id="preloader"></div>
+    
+    {% load static %}
+  <script src=" {% static '/js/validation.js' %}"></script>
+  <script src=" {% static '/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+  <script src=" {% static '/vendor/aos/aos.js'%}"></script>
+  <script src=" {% static '/vendor/glightbox/js/glightbox.min.js'%}"></script>
+  <script src=" {% static '/vendor/isotope-layout/isotope.pkgd.min.js'%}"></script>
+  <script src=" {% static '/vendor/swiper/swiper-bundle.min.js'%}"></script>
+  <script src=" {% static '/vendor/purecounter/purecounter_vanilla.js'%}"></script>
+  <script src=" {% static '/vendor/php-email-form/validate.js'%}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static '/js/main.js'%}"></script>
+  <script src=" {% static '\js\sevicedetails.js' %}"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+
+  </html>
