@@ -159,25 +159,29 @@ def projects(request):
 def crimereport(request):
     dict = {'revblog':revblog}
     if request.method=="POST":
-        reportuname = request.user
-        crimeloc = request.POST['crimeloc']
-        crimedet = request.POST['crimedet']
-        crimeproof = request.FILES['crimeproof']
+        try:
+            reportuname = request.user
+            crimeloc = request.POST['crimeloc']
+            crimedet = request.POST['crimedet']
+            crimeproof = request.FILES['crimeproof']
 
-        reportcrime = reportingcrime(reportername=reportuname,crimeloc=crimeloc,crimedetail=crimedet,crimeproof=crimeproof)
-        reportcrime.save()
+            reportcrime = reportingcrime(reportername=reportuname,crimeloc=crimeloc,crimedetail=crimedet,crimeproof=crimeproof)
+            reportcrime.save()
 
-        mail = userprotection.objects.all().filter(livingloc=crimeloc)
-        receivermail = []
-        for i in range(mail.count()):
-            receivermail.append(mail[i].email)
-        
-        if len(receivermail)!=0:
-                subject, from_email = f'{crimedet} happening in your area', 'randomkidd1209@gmail.com'
-                html_content = f'<h2>This is a crime alert mail.</h2><h3>{crimedet} has happended in your vicinity so do be careful.</h3><p>We are going to inform the authorities shortly so do be careful.</p>'
-                msg = EmailMessage(subject, html_content, from_email, receivermail)
-                msg.content_subtype = "html"
-                msg.send()
+            mail = userprotection.objects.all().filter(livingloc=crimeloc)
+            receivermail = []
+            for i in range(mail.count()):
+                receivermail.append(mail[i].email)
+            
+            if len(receivermail)!=0:
+                    subject, from_email = f'{crimedet} happening in your area', 'randomkidd1209@gmail.com'
+                    html_content = f'<h2>This is a crime alert mail.</h2><h3>{crimedet} has happended in your vicinity so do be careful.</h3><p>We are going to inform the authorities shortly so do be careful.</p>'
+                    msg = EmailMessage(subject, html_content, from_email, receivermail)
+                    msg.content_subtype = "html"
+                    msg.send()
+        except:
+            dict = {'error':'Enter valid Details'}
+            return render(request,"notfound.html",dict)
 
         
 
@@ -186,36 +190,44 @@ def crimereport(request):
 def unsafereport(request):
     dict={'revblog':revblog}
     if request.method=="POST":
-        user = request.user
-        usersafe = usersafety.objects.all().filter(usersafetyname=user.first_name)
-        usname = usersafe[0].usersafetyname
-        ustelcliid = usersafe[0].usertelegramclientid 
-        usothcliid = usersafe[0].otherstelegramclientid.split()
-        usmes = usersafe[0].message
-        lat=request.POST["lat"]
-        long=request.POST["long"]
-        # print(lat,long)
         try:
-            geolocator = Nominatim(user_agent="geoapiExercises")
-            location = geolocator.reverse(lat+","+long)
-            print(location)
+            user = request.user
+            usersafe = usersafety.objects.all().filter(usersafetyname=user.first_name)
+            usname = usersafe[0].usersafetyname
+            ustelcliid = usersafe[0].usertelegramclientid 
+            usothcliid = usersafe[0].otherstelegramclientid.split()
+            usmes = usersafe[0].message
+            lat=request.POST["lat"]
+            long=request.POST["long"]
+            # print(lat,long)
+            try:
+                geolocator = Nominatim(user_agent="geoapiExercises")
+                location = geolocator.reverse(lat+","+long)
+                print(location)
+            except:
+                location = "check it out using the link"
+            #emergency msg and telegram client id
+            
+            api_id = '28199235'
+            api_hash = 'da53a85eb88e745df9a25629edae73af'
+            token = '5846045827:AAGcX_3fN4DwETPfxGTtgVOFloitZtB10cA'
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            message = "This is am emergency from "+str(usname)+"\n"+"message: "+str(usmes)+"\n"+"location: "+str(location)+"\nlat: "+str(lat)+"\nlong: "+str(long)+f"\nnavigate: https://www.google.com/maps/@{lat},{long},15z"
+            phone = '+919152209434'
+            client = TelegramClient('session',api_id, api_hash, loop=loop)
+            client.connect()
+            for i in range(len(usothcliid)):
+                receiver = InputPeerUser(int(usothcliid[i]), 0)
+                client.send_message(receiver, message, parse_mode='html')
+            
+            client.disconnect()
         except:
-            location = "check it out using the link"
-        #emergency msg and telegram client id
-
-        api_id = '28199235'
-        api_hash = 'da53a85eb88e745df9a25629edae73af'
-        token = '5846045827:AAGcX_3fN4DwETPfxGTtgVOFloitZtB10cA'
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-        message = "This is am emergency from "+str(usname)+"\n"+"message: "+str(usmes)+"\n"+"location: "+str(location)+"\nlat: "+str(lat)+"\nlong: "+str(long)+f"\nnavigate: https://www.google.com/maps/@{lat},{long},15z"
-        phone = '+919152209434'
-        client = TelegramClient('session',api_id, api_hash, loop=loop)
-        client.connect()
-        for i in range(len(usothcliid)):
-            receiver = InputPeerUser(int(usothcliid[i]), 0)
-            client.send_message(receiver, message, parse_mode='html')
-        
-        client.disconnect()
+            dict = {'error':'Enter valid Telegram ID'}
+            return render(request,"notfound.html",dict)
 
     return render (request,"unsafereport.html",dict)
+
+def notfound(request,slug):
+    dict = {'error':'Sorry! Page not found'}
+    return render(request,"notfound.html",dict)

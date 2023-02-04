@@ -47,23 +47,27 @@ def crime_search(request):
     
 
     if request.method=="POST":
-        a = request.POST["location"] 
-        print(a)
+        try:
+            a = request.POST["location"] 
+            print(a)
 
-        b = request.POST["crime"] 
-        print(b)
+            b = request.POST["crime"] 
+            print(b)
 
-        result = google_search(f"info:news intext:{b} intext:{a} daterange:23001-23024", my_api_key, my_cse_id)
-        # julian date format
+            result = google_search(f"info:news intext:{b} intext:{a} daterange:23001-23024", my_api_key, my_cse_id)
+            # julian date format
 
-        c=search_results(result)
-        dict={"c":c,'revblog':revblog}
-        print(dict["c"]['title'])
-        # for i in range(10):
-        #     print(c["title"][i])
-        #     print(c["link"][i])
-        #     print(c["img"][i])
-        #     print(c["desc"][i])
+            c=search_results(result)
+            dict={"c":c,'revblog':revblog}
+            print(dict["c"]['title'])
+            # for i in range(10):
+            #     print(c["title"][i])
+            #     print(c["link"][i])
+            #     print(c["img"][i])
+            #     print(c["desc"][i])
+        except:
+            dict = {'error':'Select the options appropriately'}
+            return render(request,"notfound.html",dict)
 
     return render(request,'search.html',dict)
 
